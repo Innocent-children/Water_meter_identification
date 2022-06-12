@@ -1,4 +1,4 @@
-# Water_meter_identification——一个关于水表识别的项目
+# Water_meter_identification——一个关于字轮式水表识别的项目
 ## water_meter_rec
 
 这是水表识别的主体代码
