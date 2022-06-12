@@ -1,0 +1,159 @@
+{#{% extends "base.html" %}#}
+{##}
+{#{% block title %}水表系统-历史记录{% endblock %}#}
+{##}
+{#{% block head %}#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">#}
+{#{% endblock %}#}
+{##}
+{#{% block body %}#}
+{#    {% if g.user.auto==0 %}#}
+{#        {% for data in datas %}#}
+{#            <div class="{{ lis[(datas.index(data))%3] }} divcss-a">#}
+{#                <a href="http://127.0.0.1:5000/static/{{ data[0] }}" target="_blank">#}
+{#                    <img class="side-question-avatar"#}
+{#                         src="{{ url_for('static',filename=data[0]) }}">#}
+{#                </a>#}
+{#                <br/>#}
+{#                {{ data[0] }}#}
+{#                <br/>#}
+{#                识别结果：{{ data[1] }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#    {% if g.user.auto==1 %}#}
+{#        {% for data in datas %}#}
+{#            <div class="{{ lis[(datas.index(data))%3] }} divcss-a">#}
+{#                <a href="http://127.0.0.1:5000/static/{{ data[0] }}" target="_blank">#}
+{#                    <img class="side-question-avatar"#}
+{#                         src="{{ url_for('static',filename=data[0]) }}">#}
+{#                </a>#}
+{#                <br/>#}
+{#                {{ data[0] }}#}
+{#                <br/>#}
+{#                识别结果：{{ data[1] }}#}
+{#                <br/>#}
+{#                <form method="get" action="alte/{{ data[0] }}">#}
+{#                    <input type="text" name="alte" id="alte" placeholder="请输入正确数值"#}
+{#                           class="side-question-avatar1">#}
+{#                    <button type="submit" class="button_search">修订</button>#}
+{#                </form>#}
+{#                <br/>#}
+{#                <form method="get" action="delt/{{ data[0] }}">#}
+{#                    <button type="submit" class="divcss-b button_search">删除</button>#}
+{#                </form>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#{% endblock %}#}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水表系统-历史记录</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='bootstrap/bootstrap@4.6.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        {% if g.user.auto==1 %}
+            <a class="navbar-brand" href="/tmp">水表系统</a>
+        {% endif %}
+        {% if g.user.auto==0 %}
+            <a class="navbar-brand" href="/">水表系统</a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    {% if g.user.auto==1 %}
+                        <a class="nav-link" href="/tmp">首页<span class="sr-only">(current)</span></a>
+                    {% endif %}
+                    {% if g.user.auto==0 %}
+                        <a class="nav-link" href="/">首页<span class="sr-only">(current)</span></a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/history">历史数据</a>
+                </li>
+                <li class="nav-item" ml-2>
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="关键字"
+                               aria-label="Search" name="q">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if user %}
+                    <li class="nav-item">
+                        <span class="nav-link">{{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.logout') }}">退出登录</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.login') }}">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.register') }}">注册</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% if g.user.auto==0 %}
+        {% for data in datas %}
+            <div class="{{ lis[(datas.index(data))%3] }} divcss-a">
+                <a href="http://127.0.0.1:5000/static/{{ data[0] }}" target="_blank">
+                    <img class="side-question-avatar"
+                         src="{{ url_for('static',filename=data[0]) }}">
+                </a>
+                <br/>
+                {{ data[0] }}
+                <br/>
+                识别结果：{{ data[1] }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if g.user.auto==1 %}
+        {% for data in datas %}
+            <div class="{{ lis[(datas.index(data))%3] }} divcss-a">
+                <a href="http://127.0.0.1:5000/static/{{ data[0] }}" target="_blank">
+                    <img class="side-question-avatar"
+                         src="{{ url_for('static',filename=data[0]) }}">
+                </a>
+                <br/>
+                {{ data[0] }}
+                <br/>
+                识别结果：{{ data[1] }}
+                <br/>
+                <form method="get" action="alte/{{ data[0] }}">
+                    <input type="text" name="alte" id="alte" placeholder="请输入正确数值"
+                           class="side-question-avatar1">
+                    <button type="submit" class="button_search">修订</button>
+                </form>
+                <br/>
+                <form method="get" action="delt/{{ data[0] }}">
+                    <button type="submit" class="divcss-b button_search">删除</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>

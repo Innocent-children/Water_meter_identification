@@ -1,0 +1,198 @@
+.question-ul li {
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.side-question {
+    flex-basis: 38px;
+    height: 100%;
+}
+
+#parent {
+    /*height: 3px;*/
+}
+
+#left {
+    float: left;
+    width: 500px;
+    text-align: center;
+    background-color: lightblue;
+}
+
+#center {
+    float: left;
+    width: 150px;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+#right {
+    margin-left: 650px; /* 左列的宽度 + 中间列的宽度 */
+    text-align: center;
+    background-color: lightgreen;
+}
+
+.left {
+    float: left;
+    width: 370px;         /*原为500*/
+    text-align: center;
+    /*background-color: lightblue;*/
+}
+
+.center {
+    float: left;
+    width: 370px;          /*原为150*/
+    text-align: center;
+    /*background-color: lightgrey;*/
+}
+
+.right {
+    float: left;
+    width: 370px;         /*原为380*/
+    /*margin-left: 650px; !* 左列的宽度 + 中间列的宽度 *!*/
+    text-align: center;
+    /*background-color: lightgreen;*/
+}
+
+.right1 {
+    margin-left: 1030px; /* 左列的宽度 + 中间列的宽度 */
+    text-align: center;
+    /*background-color: #2A80B9;*/
+}
+
+.fsize {
+    font-size: large;
+}
+
+.divcss-a { /*设置“divcss-a”对象上下间距为10px,左右为0*/
+    margin: 200px 0;       /*原值为10*/
+    height: 38px;
+}
+
+.divcss-b { /*设置“divcss-a”对象上下间距为30px,左右为0*/
+    /*margin: 10px 0;*/
+    height: 38px;
+}
+
+.div-a {
+    float: left;
+    width: 35%;
+    /*margin: 0px 5px;*/
+    background-color: #2A80B9;
+}
+
+.div-b {
+    /*float: left;*/
+    /*width: 12%;*/
+    margin: 0px 5px;
+}
+
+.div-c {
+    float: left;
+    width: 35%;
+    height:68px;
+    /*margin: 0px 5px;*/
+    background-color: #2A80B9;
+}
+
+
+.button_search, .button_search_all {
+    background: #2A80B9;
+    color: #fff;
+    border: none;
+    -moz-border-radius: 5px; /* Firefox */
+    -webkit-border-radius: 5px; /* Safari 和 Chrome */
+    border-radius: 5px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    padding: 6px 8px 6px 8px;
+    cursor: pointer;
+}
+
+.side-question-avatar {
+    width: 250px;      /*原值为38*/
+    height: 250px;     /*原值为38*/
+    border-radius: 3px;
+}
+
+.side-question-avatar1 {
+    width: 200px;
+    height: 38px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.side-question-avatar2 {
+    width: 50px;
+    height: 38px;
+    border-radius: 3px;
+}
+
+.question-main {
+    flex: 1;
+    width: 660px;
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.question-title a {
+    color: #259;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.question-author {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.question-content {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.question-detail {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.question-detail .question-author {
+    margin-right: 10px;
+}
+
+
+.a-upload {
+    padding: 6px 10px;
+    height: 38px;
+    line-height: 20px;
+    position: relative;
+    /*相对定位*/
+    cursor: pointer;
+    /*color: #888;*/
+    /*background: #fafafa;*/
+    /*border: 1px solid #ddd;*/
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    /*显示一排*/
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    /*color: #444;*/
+    /*background: #eee;*/
+    /*border-color: #ccc;*/
+    text-decoration: none
+}

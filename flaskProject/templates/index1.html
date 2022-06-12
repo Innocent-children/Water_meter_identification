@@ -1,0 +1,133 @@
+{#{% extends "base.html" %}#}
+{##}
+{#{% block title %}水表系统-首页{% endblock %}#}
+{##}
+{#{% block head %}#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">#}
+{#        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>#}
+{#        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>#}
+{#{% endblock %}#}
+{##}
+{#{% block body %}#}
+{#    <div class="row" style="margin-top: 20px;">#}
+{#        <div class="col"></div>#}
+{#        <div class="col-8">#}
+{#            <h1>在此上传图片</h1>#}
+{#            <form method=post enctype=multipart/form-data>#}
+{#                <input type=file name=file class="a-upload div-a">{# 上传多个文件添加：multiple="multiple" #}
+{#                                <input type=submit class="button_search" value=上传>#}
+{#                                <a href="javascript:" class="a-upload div-a">#}
+{#                                    <input type="file" name="file"/>点击这里选择文件{# 上传多个文件添加：multiple="multiple" #}
+{#                                </a>#}
+{#                <input type=submit class="button_search div-b" value=上传>#}
+{##}
+{#            </form>#}
+{##}
+{#            <br/>#}
+{#            <form method="get" action="/rec">#}
+{#                <button type="submit" class="button_search div-c">识别</button>#}
+{#            </form>#}
+{##}
+{#            <br/>#}
+{#            <br/>#}
+{#            <br/>#}
+{#            {% for message in get_flashed_messages() %}#}
+{#                <div class="form-group">#}
+{#                    <div class="text-danger">{{ message }}</div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        <div class="col"></div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水表系统-首页</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='bootstrap/bootstrap@4.6.min.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/tmp">水表系统</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/tmp">首页<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/history">历史数据</a>
+                </li>
+                <li class="nav-item" ml-2>
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="关键字"
+                               aria-label="Search" name="q">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if user %}
+                    <li class="nav-item">
+                        <span class="nav-link">{{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.logout') }}">退出登录</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.login') }}">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.register') }}">注册</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col"></div>
+        <div class="col-8">
+            <h1>在此上传图片</h1>
+            <form method=post enctype=multipart/form-data>
+                <input type=file name=file class="a-upload div-a" multiple="multiple">{# 上传多个文件添加：multiple="multiple"
+{#                <input type=submit class="button_search" value=上传>#}
+                {#                <a href="javascript:" class="a-upload div-a">#}
+                {#                    <input type="file" name="file"/>点击这里选择文件{# 上传多个文件添加：multiple="multiple"#}
+                {#                </a>#}
+                <input type=submit class="button_search div-b" value=上传>
+            </form>
+
+            <br/>
+            <form method="get" action="/rec">
+                <button type="submit" class="button_search div-c">识别</button>
+            </form>
+
+            <br/>
+            <br/>
+            <br/>
+            {% for message in get_flashed_messages() %}
+                <div class="form-group">
+                    <div class="text-danger">{{ message }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+</body>
+</html>
